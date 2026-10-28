@@ -1,4 +1,4 @@
-# 手勢偵測
+# 20261028_gesture｜手勢偵測
 
 以 Flask 提供網頁、以瀏覽器端 MediaPipe Gesture Recognizer 偵測即時手勢，預計部署到 Render。相機影像在使用者瀏覽器中處理，不會傳到 Flask 伺服器。桌面版左側是相機控制區，右側是圖片展示和播放按鈕。
 
