@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#10151c">
+    <title>手勢圖片播放</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css', v='gesture-thumbdown-1') }}">
+    <script type="module" src="{{ url_for('static', filename='app.js', v='gesture-thumbdown-1') }}"></script>
+  </head>
+  <body>
+    <main class="shell">
+      <header class="topbar">
+        <a class="brand" href="/" aria-label="手勢圖片播放首頁"><span class="brand-mark">✳</span> 手勢圖片播放</a>
+        <span class="privacy"><span class="privacy-dot"></span>影像只在本機處理</span>
+      </header>
+
+      <section class="intro">
+        <p class="eyebrow">GESTURE GALLERY <span>·</span> HANDS-FREE CONTROL</p>
+        <h1>用手勢，<em>翻閱圖片。</em></h1>
+        <p class="lede">移動手掌切換圖片，或用食指、小指快速跳到開頭與結尾。</p>
+      </section>
+
+      <section class="workspace" aria-label="手勢圖片播放工作區">
+        <section class="camera-card" aria-label="攝影機與手勢辨識">
+          <div class="section-heading"><span class="heading-index">01</span><span>手勢控制</span><span class="heading-note">CAMERA</span></div>
+          <div class="camera-stage" id="camera-stage">
+            <video id="camera" autoplay playsinline muted></video>
+            <div class="camera-placeholder" id="camera-placeholder">
+              <div class="hand-icon" aria-hidden="true">✋</div>
+              <p>開啟相機，開始使用手勢控制</p>
+              <small>請將手掌放在鏡頭前</small>
+            </div>
+            <div class="stage-chip" id="stage-chip"><span></span> 等待相機</div>
+          </div>
+          <div class="camera-footer">
+            <div class="recognition-state" aria-live="polite">
+              <span class="state-icon" id="state-icon">✳</span>
+              <span><strong id="gesture-label">尚未開始</strong><small id="gesture-detail">辨識結果會顯示在這裡</small></span>
+            </div>
+            <button id="camera-button" class="primary-button" type="button">開啟相機 <span aria-hidden="true">↗</span></button>
+          </div>
+          <div class="camera-help"><span>張開手掌左移</span><b>上一張</b><i>·</i><span>右移</span><b>下一張</b></div>
+        </section>
+
+        <section class="gallery-card" aria-label="圖片展示">
+          <div class="section-heading"><span class="heading-index">02</span><span>圖片展示</span><span class="heading-note" id="gallery-count">01 / 04</span></div>
+          <div class="gallery-image-wrap">
+            <img id="gallery-image" src="{{ url_for('static', filename='images/aurora.svg') }}" alt="北方極光與山巒的插畫">
+            <span class="image-index" id="image-index">01</span>
+            <span class="image-flip-status" id="image-flip-status">正常方向</span>
+          </div>
+          <div class="gallery-caption"><div><p class="image-kicker" id="image-kicker">COLLECTION 01</p><h2 id="image-title">極光之境</h2></div><span class="image-description" id="image-description">夜色與流動的光</span></div>
+          <div class="gallery-controls" aria-label="圖片播放控制">
+            <button class="control-button edge-button" id="first-button" type="button" aria-label="第一張圖片" title="第一張">|← <span>第一張</span></button>
+            <div class="step-controls">
+              <button class="control-button icon-button" id="previous-button" type="button" aria-label="上一張圖片" title="上一張">←</button>
+              <button class="control-button icon-button" id="next-button" type="button" aria-label="下一張圖片" title="下一張">→</button>
+            </div>
+            <button class="control-button edge-button" id="last-button" type="button" aria-label="最後一張圖片" title="最後一張"><span>最後一張</span> →|</button>
+          </div>
+        </section>
+      </section>
+
+      <section class="gesture-guide" aria-label="手勢操作說明">
+        <div class="guide-title"><span>✳</span><div><strong>手勢操作</strong><small>也可以使用圖片下方按鈕</small></div></div>
+        <div class="guide-item"><span class="guide-symbol">←</span><span><b>張開手掌左移</b><small>上一張</small></span></div>
+        <div class="guide-item"><span class="guide-symbol">→</span><span><b>張開手掌右移</b><small>下一張</small></span></div>
+        <div class="guide-item"><span class="guide-emoji">☝️</span><span><b>只伸食指</b><small>回到第一張</small></span></div>
+        <div class="guide-item"><span class="guide-emoji">🖕</span><span><b>只伸中指</b><small>上下翻轉圖片</small></span></div>
+        <div class="guide-item"><span class="guide-emoji">🤙</span><span><b>只伸小指</b><small>跳到最後一張</small></span></div>
+        <div class="guide-item"><span class="guide-symbol">↔</span><span><b>手心／手背翻面</b><small>切換圖片鏡像</small></span></div>
+        <div class="guide-item"><span class="guide-emoji">👎</span><span><b>倒讚</b><small>色彩反相</small></span></div>
+      </section>
+
+      <footer class="page-footer"><span>MediaPipe Gesture Recognizer</span><span>相機影像不會上傳至伺服器</span></footer>
+      <p class="notice" id="notice" role="status"></p>
+    </main>
+  </body>
+</html>
